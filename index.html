@@ -1252,11 +1252,47 @@
   }
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
+  // Static partner data as fallback
+  var STATIC_PARTNERS = [
+    { name: 'OÄ Dr. Zorica Petrovic', specialty: 'Urologie', address: 'Schopenhauerstraße 64/2-4, 1180 Wien', website: 'www.urologie-petrovic.at', notes: null, phone: null },
+    { name: 'OA Dr. Georg Freude', specialty: 'Kinderwunsch / Fortpflanzungsmedizin', address: 'Niederhofstrasse 30/2, 1120 Wien', website: 'www.sterilitaet.at', notes: 'Kinderwunschzentrum GYNANDRON – Institut für Fortpflanzungsmedizin und Endokrinologie', phone: null },
+    { name: 'Dr. Hans-Peter Holzapfel', specialty: 'Orthopädie', address: 'Sieveringerstrasse 36/2, 1190 Wien', website: 'www.medfocus.at', notes: 'Facharzt für Orthopädie und orthopädische Chirurgie', phone: null },
+  ];
+
+  function renderPartners(partners) {
+    var container = document.getElementById('partner-list-modal');
+    if (!container) return;
+    if (!partners || partners.length === 0) {
+      container.innerHTML = '<p style="color:#9a8e8a">Keine Partner eingetragen.</p>';
+      return;
+    }
+    container.innerHTML = partners.map(function(p) {
+      return '<div style="background:#faf7f4;border:0.5px solid #e8ddd8;border-radius:8px;padding:1.2rem 1.4rem;margin-bottom:1rem">' +
+        '<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem">' +
+          '<div>' +
+            (p.specialty ? '<div style="font-size:0.62rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:#b85c6e;margin-bottom:0.3rem">' + p.specialty + '</div>' : '') +
+            '<div style="font-family:Cormorant Garamond,serif;font-size:1.2rem;font-weight:400;color:#2a2320">' + p.name + '</div>' +
+            (p.notes ? '<div style="font-size:0.8rem;color:#5a4e4a;margin-top:0.25rem">' + p.notes + '</div>' : '') +
+          '</div>' +
+          (p.website ? '<a href="https://' + p.website.replace('https://','').replace('http://','') + '" target="_blank" rel="noopener noreferrer" style="font-size:0.75rem;color:#b85c6e;border:0.5px solid #b85c6e;border-radius:2px;padding:0.3rem 0.7rem;white-space:nowrap;text-decoration:none">Website &#8594;</a>' : '') +
+        '</div>' +
+        (p.address ? '<div style="font-size:0.8rem;color:#9a8e8a;margin-top:0.5rem">&#128205; ' + p.address + '</div>' : '') +
+        (p.phone ? '<div style="font-size:0.8rem;color:#9a8e8a;margin-top:0.25rem">&#128222; <a href="tel:' + p.phone + '" style="color:#b85c6e">' + p.phone + '</a></div>' : '') +
+      '</div>';
+    }).join('');
+    container.dataset.loaded = 'true';
+  }
+
   async function loadPartners() {
     var container = document.getElementById('partner-list-modal');
     if (!container || container.dataset.loaded === 'true') return;
+    // Show static data immediately
+    renderPartners(STATIC_PARTNERS);
+    // Then try to load live data from backend (may be sleeping on free plan)
     try {
-      var resp = await fetch('https://neumann-portal-backend.onrender.com/partners/public');
+      var controller = new AbortController();
+      setTimeout(function() { controller.abort(); }, 5000);
+      var resp = await fetch('https://neumann-portal-backend.onrender.com/partners/public', { signal: controller.signal });
       var data = await resp.json();
       var partners = data.data || [];
       if (partners.length === 0) {
@@ -1277,9 +1313,12 @@
           (p.phone ? '<div style="font-size:0.8rem;color:#9a8e8a;margin-top:0.25rem">&#128222; <a href="tel:' + p.phone + '" style="color:#b85c6e">' + p.phone + '</a></div>' : '') +
         '</div>';
       }).join('');
-      container.dataset.loaded = 'true';
+      if (partners.length > 0) {
+        renderPartners(partners);
+      }
     } catch(e) {
-      container.innerHTML = '<p style="color:#9a8e8a">Partner konnten nicht geladen werden.</p>';
+      // Backend not reachable - static data already shown, no error needed
+      console.log('Backend partners not available, using static data');
     }
   }
 </script>
