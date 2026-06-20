@@ -879,7 +879,7 @@
         </p>
       </div>
 
-      <a id="kontakt-cta" href="https://neumann-portal-frontend.onrender.com" class="btn-primary" target="_blank" rel="noopener noreferrer">
+      <a id="kontakt-cta" href="https://neumann-portal-frontend.onrender.com?lang=de" class="portal-link" class="btn-primary" target="_blank" rel="noopener noreferrer">
         Online Termin anfragen
       </a>
     </div>
@@ -1188,6 +1188,7 @@
     document.getElementById('footer-partner').textContent = t.footer.partner;
 
     // Lang switcher highlight
+    document.querySelectorAll('.portal-link').forEach(a => { a.href = 'https://neumann-portal-frontend.onrender.com?lang=' + lang; });
     document.querySelectorAll('.nav-lang-btn').forEach(a => {
       const isActive = a.dataset.lang === lang;
       a.classList.toggle('active', isActive);
