@@ -643,15 +643,15 @@
       <div class="times-row">
         <div class="times-doc">
           <div class="times-doc-name">OA Dr. Michael Neumann</div>
-          <div class="times-doc-day">Dienstag & Mittwoch</div>
-          <div class="times-doc-hours">14:00 – 19:00 Uhr</div>
-          <span class="times-doc-ins">BVAEB · KFA · Privat</span>
+          <div class="times-doc-day" id="times-m-days">Dienstag & Mittwoch</div>
+          <div class="times-doc-hours" id="times-m-hours">14:00 – 19:00 Uhr</div>
+          <span class="times-doc-ins" id="times-m-ins">BVAEB · KFA · Privat</span>
         </div>
         <div class="times-doc">
           <div class="times-doc-name">OÄ Dr. Etelka Neumann</div>
-          <div class="times-doc-day">Montag & Donnerstag</div>
-          <div class="times-doc-hours">11:00 – 18:00 Uhr</div>
-          <span class="times-doc-ins">KFA · Privat · Magyar</span>
+          <div class="times-doc-day" id="times-e-days">Montag & Donnerstag</div>
+          <div class="times-doc-hours" id="times-e-hours">11:00 – 18:00 Uhr</div>
+          <span class="times-doc-ins" id="times-e-ins">KFA · Privat · Magyar</span>
         </div>
       </div>
       <div class="times-contact">
@@ -870,7 +870,7 @@
       <div class="kontakt-block">
         <span class="label" id="kontakt-tel-title">Telefon & E-Mail</span>
         <p>
-          <a href="tel:+4314706559">+43 1 470 65 59</a> (während der Ordinationszeiten)<br>
+          <a href="tel:+4314706559">+43 1 470 65 59</a> <span id="kontakt-tel-hours">während der Ordinationszeiten</span><br>
           <a href="mailto:ordi@frauenarzt-neumann.at">ordi@frauenarzt-neumann.at</a>
         </p>
       </div>
@@ -945,6 +945,12 @@
       times: {
         title: 'Ordinationszeiten',
         contact_tel: 'Telefon', contact_mail: 'E-Mail', contact_addr: 'Adresse',
+        michael_days: 'Dienstag & Mittwoch',
+        michael_hours: '14:00 – 19:00 Uhr',
+        michael_ins: 'BVAEB · KFA · Privat',
+        etelka_days: 'Montag & Donnerstag',
+        etelka_hours: '11:00 – 18:00 Uhr',
+        etelka_ins: 'KFA · Privat · Magyar',
       },
       leistungen: {
         eyebrow: 'Unser Leistungsspektrum',
@@ -989,6 +995,7 @@
         h2: 'Wir freuen uns<br>auf Ihren Besuch.',
         addr_title: 'Adresse', addr_body: 'Hofstattgasse 17/3<br>1180 Wien (18. Bezirk)<br><br>Etwa eine Minute Gehweg vom Aumannplatz.<br>Straßenbahnlinien 40 und 41 vom Schottentor.',
         tel_title: 'Telefon & E-Mail',
+        tel_hours: 'während der Ordinationszeiten',
         times_title: 'Ordinationszeiten',
         times_body: '<strong>OA Dr. Michael Neumann</strong><br>Dienstag & Mittwoch, 14:00–19:00 Uhr<br><br><strong>OÄ Dr. Etelka Neumann</strong><br>Montag & Donnerstag, 11:00–18:00 Uhr<br><br>Termine nach Vereinbarung auch außerhalb dieser Zeiten möglich.',
         cta: 'Online Termin anfragen',
@@ -1006,7 +1013,15 @@
         cta1: 'Időpontot kérek online', cta2: 'A rendelőről',
         stat1l: 'szülés kísérve', stat2l: 'műtét elvégezve', stat3l: 'év tapasztalat',
       },
-      times: { title: 'Rendelési idők' },
+      times: {
+      title: 'Rendelési idők',
+      michael_days: 'Kedd & Szerda',
+      michael_hours: '14:00 – 19:00',
+      michael_ins: 'BVAEB · KFA · Magán',
+      etelka_days: 'Hétfő & Csütörtök',
+      etelka_hours: '11:00 – 18:00',
+      etelka_ins: 'KFA · Magán · Magyar',
+    },
       leistungen: {
         eyebrow: 'Szolgáltatásaink',
         h2: 'Átfogó ellátás<br>az élet minden szakaszában.',
@@ -1050,6 +1065,7 @@
         h2: 'Örömmel várjuk<br>látogatását.',
         addr_title: 'Cím', addr_body: 'Hofstattgasse 17/3<br>1180 Bécs (18. kerület)<br><br>Az Aumannplatztól kb. egy perc gyaloglás.<br>40-es és 41-es villamosok a Schottentor-tól.',
         tel_title: 'Telefon & E-mail',
+        tel_hours: 'rendelési időben',
         times_title: 'Rendelési idők',
         times_body: '<strong>OA Dr. Michael Neumann</strong><br>Kedd & Szerda, 14:00–19:00<br><br><strong>OÄ Dr. Etelka Neumann</strong><br>Hétfő & Csütörtök, 11:00–18:00<br><br>Megbeszélés alapján az időpontokon kívül is lehetséges.',
         cta: 'Online időpontfoglalás',
@@ -1067,7 +1083,15 @@
         cta1: 'Book appointment online', cta2: 'About the practice',
         stat1l: 'births accompanied', stat2l: 'operations', stat3l: 'years of experience',
       },
-      times: { title: 'Opening hours' },
+      times: {
+      title: 'Opening hours',
+      michael_days: 'Tuesday & Wednesday',
+      michael_hours: '2:00 pm – 7:00 pm',
+      michael_ins: 'BVAEB · KFA · Private',
+      etelka_days: 'Monday & Thursday',
+      etelka_hours: '11:00 am – 6:00 pm',
+      etelka_ins: 'KFA · Private · Hungarian',
+    },
       leistungen: {
         eyebrow: 'Our services',
         h2: 'Comprehensive care<br>at every stage of life.',
@@ -1111,6 +1135,7 @@
         h2: 'We look forward<br>to your visit.',
         addr_title: 'Address', addr_body: "Hofstattgasse 17/3<br>1180 Vienna (18th district)<br><br>About one minute's walk from Aumannplatz.<br>Tram lines 40 and 41 from Schottentor.",
         tel_title: 'Phone & Email',
+        tel_hours: 'during opening hours',
         times_title: 'Opening hours',
         times_body: "<strong>OA Dr. Michael Neumann</strong><br>Tuesday & Wednesday, 2:00 pm–7:00 pm<br><br><strong>OÄ Dr. Etelka Neumann</strong><br>Monday & Thursday, 11:00 am–6:00 pm<br><br>Appointments by arrangement also possible outside these hours.",
         cta: 'Book appointment online',
@@ -1191,6 +1216,19 @@
     document.getElementById('kontakt-times-title').textContent = t.kontakt.times_title;
     document.getElementById('kontakt-times-body').innerHTML = t.kontakt.times_body;
     document.getElementById('kontakt-cta').textContent = t.kontakt.cta;
+
+    // Hero times card
+    if (document.getElementById('times-m-days')) {
+      document.getElementById('times-m-days').textContent = t.times.michael_days;
+      document.getElementById('times-m-hours').textContent = t.times.michael_hours;
+      document.getElementById('times-e-days').textContent = t.times.etelka_days;
+      document.getElementById('times-e-hours').textContent = t.times.etelka_hours;
+      document.getElementById('times-m-ins').textContent = t.times.michael_ins;
+      document.getElementById('times-e-ins').textContent = t.times.etelka_ins;
+    }
+    if (document.getElementById('kontakt-tel-hours')) {
+      document.getElementById('kontakt-tel-hours').textContent = t.kontakt.tel_hours;
+    }
 
     // Footer
     document.getElementById('footer-impressum').textContent = t.footer.impressum;
