@@ -573,7 +573,7 @@
       <span style="color:var(--border)">|</span>
       <a href="#" class="nav-lang-btn" data-lang="en" onclick="setLang('en');return false;" style="font-size:0.72rem;font-weight:500;letter-spacing:0.08em;color:var(--stone-light)">EN</a>
     </div>
-    <a href="https://neumann-portal-frontend.onrender.com?lang=de" id="nav-portal" class="portal-link nav-cta" target="_blank" rel="noopener noreferrer">Online Portal</a>
+    <a href="https://neumann-portal-frontend.onrender.com?lang=de" id="nav-portal" class="portal-link" class="nav-cta" target="_blank" rel="noopener noreferrer">Online Portal</a>
   </div>
   <button class="mobile-menu-btn" aria-label="Menü">
     <span></span><span></span><span></span>
@@ -879,7 +879,7 @@
         </p>
       </div>
 
-      <a id="kontakt-cta" href="https://neumann-portal-frontend.onrender.com?lang=de" class="portal-link" class="btn-primary" target="_blank" rel="noopener noreferrer">
+      <a id="kontakt-cta" href="https://neumann-portal-frontend.onrender.com" class="btn-primary" target="_blank" rel="noopener noreferrer">
         Online Termin anfragen
       </a>
     </div>
@@ -1188,7 +1188,6 @@
     document.getElementById('footer-partner').textContent = t.footer.partner;
 
     // Lang switcher highlight
-    document.querySelectorAll('.portal-link').forEach(a => { a.href = 'https://neumann-portal-frontend.onrender.com?lang=' + lang; });
     document.querySelectorAll('.nav-lang-btn').forEach(a => {
       const isActive = a.dataset.lang === lang;
       a.classList.toggle('active', isActive);
