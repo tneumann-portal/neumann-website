@@ -506,7 +506,7 @@
     .kontakt-inner { grid-template-columns: 1fr; }
     .kontakt-map { min-height: 240px; }
     .nav-links { display: none; }
-    .mobile-menu-btn { display: flex; }
+    .mobile-controls { display: flex !important; }
     .times-row { grid-template-columns: 1fr; gap: 1rem; }
     footer { flex-direction: column; align-items: flex-start; }
   }
@@ -584,9 +584,21 @@
     </div>
     <a href="https://neumann-portal-frontend.onrender.com?lang=de" id="nav-portal" class="portal-link nav-cta" target="_blank" rel="noopener noreferrer">Online Portal</a>
   </div>
-  <button class="mobile-menu-btn" aria-label="Menü">
-    <span></span><span></span><span></span>
-  </button>
+  <div style="display:none;align-items:center;gap:10px" class="mobile-controls">
+    <div style="display:flex;gap:2px;border:0.5px solid var(--border);border-radius:3px;overflow:hidden">
+      <a href="#" class="nav-lang-btn active" data-lang="de" onclick="setLang('de');return false;"
+         style="font-size:0.68rem;font-weight:600;padding:4px 7px;color:var(--stone-mid);text-decoration:none;letter-spacing:0.06em">DE</a>
+      <span style="width:0.5px;background:var(--border);display:block"></span>
+      <a href="#" class="nav-lang-btn" data-lang="hu" onclick="setLang('hu');return false;"
+         style="font-size:0.68rem;font-weight:500;padding:4px 7px;color:var(--stone-light);text-decoration:none;letter-spacing:0.06em">HU</a>
+      <span style="width:0.5px;background:var(--border);display:block"></span>
+      <a href="#" class="nav-lang-btn" data-lang="en" onclick="setLang('en');return false;"
+         style="font-size:0.68rem;font-weight:500;padding:4px 7px;color:var(--stone-light);text-decoration:none;letter-spacing:0.06em">EN</a>
+    </div>
+    <button class="mobile-menu-btn" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -1235,12 +1247,14 @@
     document.getElementById('footer-datenschutz').textContent = t.footer.datenschutz;
     document.getElementById('footer-partner').textContent = t.footer.partner;
 
-    // Lang switcher highlight
+    // Lang switcher highlight (desktop + mobile)
     document.querySelectorAll('.nav-lang-btn').forEach(a => {
       const isActive = a.dataset.lang === lang;
       a.classList.toggle('active', isActive);
       a.style.color = isActive ? 'var(--rose)' : 'var(--stone-light)';
-      a.style.fontWeight = isActive ? '600' : '500';
+      a.style.fontWeight = isActive ? '600' : '400';
+      if (isActive) a.style.background = 'var(--rose-mist,#fdf5f6)';
+      else a.style.background = '';
     });
 
     // Update all portal links to pass current language
