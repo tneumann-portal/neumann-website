@@ -1268,15 +1268,17 @@
     }
     container.innerHTML = partners.map(function(p) {
       return '<div style="background:#faf7f4;border:0.5px solid #e8ddd8;border-radius:8px;padding:1.2rem 1.4rem;margin-bottom:1rem">' +
-        '<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem">' +
-          '<div>' +
+        '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem">' +
+          '<div style="flex:1;min-width:0">' +
             (p.specialty ? '<div style="font-size:0.62rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:#b85c6e;margin-bottom:0.3rem">' + p.specialty + '</div>' : '') +
             '<div style="font-family:Cormorant Garamond,serif;font-size:1.2rem;font-weight:400;color:#2a2320">' + p.name + '</div>' +
-            (p.notes ? '<div style="font-size:0.8rem;color:#5a4e4a;margin-top:0.25rem">' + p.notes + '</div>' : '') +
+            (p.notes ? '<div style="font-size:0.8rem;color:#5a4e4a;margin-top:0.25rem;line-height:1.5">' + p.notes + '</div>' : '') +
           '</div>' +
-          (p.website ? '<a href="https://' + p.website.replace('https://','').replace('http://','') + '" target="_blank" rel="noopener noreferrer" style="font-size:0.75rem;color:#b85c6e;border:0.5px solid #b85c6e;border-radius:2px;padding:0.3rem 0.7rem;white-space:nowrap;text-decoration:none">Website &#8594;</a>' : '') +
+          '<div style="flex-shrink:0">' +
+            (p.website ? '<a href="https://' + p.website.replace('https://','').replace('http://','') + '" target="_blank" rel="noopener noreferrer" style="font-size:0.75rem;color:#b85c6e;border:0.5px solid #b85c6e;border-radius:2px;padding:0.3rem 0.7rem;white-space:nowrap;text-decoration:none;display:inline-block">Website &#8594;</a>' : '') +
+          '</div>' +
         '</div>' +
-        (p.address ? '<div style="font-size:0.8rem;color:#9a8e8a;margin-top:0.5rem">&#128205; ' + p.address + '</div>' : '') +
+        (p.address ? '<div style="font-size:0.8rem;color:#9a8e8a;margin-top:0.6rem">&#128205; ' + p.address + '</div>' : '') +
         (p.phone ? '<div style="font-size:0.8rem;color:#9a8e8a;margin-top:0.25rem">&#128222; <a href="tel:' + p.phone + '" style="color:#b85c6e">' + p.phone + '</a></div>' : '') +
       '</div>';
     }).join('');
