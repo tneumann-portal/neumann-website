@@ -85,13 +85,16 @@
     border-bottom: 1px solid var(--border);
   }
   .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    color: var(--stone);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
   }
-  .nav-logo span { color: var(--rose); }
+  .nav-logo img {
+    height: 44px;
+    width: auto;
+    display: block;
+  }
+
   .nav-links { display: flex; align-items: center; gap: 2rem; }
   .nav-links a {
     font-size: 0.82rem;
@@ -581,7 +584,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">Ordination <span>Dr. Neumann</span></div>
+  <div class="nav-logo"><img src="logo-neumann.png" alt="Frauenarzt Neumann" onclick="window.scrollTo({top:0,behavior:'smooth'})"></div>
   <div class="nav-links">
     <a href="#leistungen" id="nav-leistungen">Leistungen</a>
     <a href="#ueber-uns" id="nav-ueber">Über uns</a>
